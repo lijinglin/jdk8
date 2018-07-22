@@ -17,76 +17,9 @@ interface  Match<T>
 	boolean test(T t);
 }
 
-class Apple
-{
-	Apple(String color,int weight)
-	{
-		this.color = color;
-		this.weight = weight;
-	}
 
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-	private String color;
-	public String getColor() {
-		return color;
-	}
 
-	public void setColor(String color) {
-		this.color = color;
-	}
-	int weight;
-	
-	public String toString()
-	{
-		return "Apple[color=" + getColor() + ",weight=" + getWeight() + "]";
-	}
 
-}
-
-class Tool
-{
-	static public  <T> List<T> filter(List<T> inventory , Match<T> match)
-	{
-		List<T> retList = new ArrayList<T>();
-		for(T t: inventory)
-		{
-			if(match.test(t)) retList.add(t);
-		}
-		return retList;
-	}
-	
-	static <T> void outputList(List<T> list, Format<T> f)
-	{
-		for(T e: list)
-		{
-			f.test(e);
-		}
-	}
-	
-	static List<Apple> buildAppleList()
-	{
-		List<Apple> list = new ArrayList<Apple>();
-		list.add(new Apple("red",30));
-		list.add(new Apple("yellow",50));
-		list.add(new Apple("red",40));
-		list.add(new Apple("green",30));
-		list.add(new Apple("red",35));
-		list.add(new Apple("red",44));
-		list.add(new Apple("green",36));
-		list.add(new Apple("red",32));
-		
-		return list;
-	}
-	
-	
-	
-	
-}
 
 public class Main {
 
@@ -148,9 +81,18 @@ public class Main {
 			ex.printStackTrace();
 		}
 	}
+	
+	static void testGenerate()
+	{
+		Stream.generate(Math::random).limit(100).forEach(System.out::println);
+		
+	}
+	
 	public static void main(String[] args)
 	{
-		testFile();
+		//testFile();
+		
+		testGenerate();
 		//stream.filter((int [] arr)->sqrt(arr[0] * arr[0] + arr[1]*arr[1]) %1 == 0 ).forEach((arr)->System.out.println(arr[0] +"," + arr[1]));
 	} 
 	
