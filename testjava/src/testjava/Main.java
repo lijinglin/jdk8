@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 interface  Format<T>
 {
@@ -82,17 +83,23 @@ public class Main {
 		}
 	}
 	
-	static void testGenerate()
+	static void testGenerateNum()
 	{
 		Stream.generate(Math::random).limit(100).forEach(System.out::println);
-		
+	}
+	
+	static void testGenerateApple()
+	{
+		Stream.generate(()->AppleFactory.randomApple()).limit(20).forEach(System.out::println);
 	}
 	
 	public static void main(String[] args)
 	{
 		//testFile();
 		
-		testGenerate();
+		//testGenerateNum();
+		testGenerateApple();
+		
 		//stream.filter((int [] arr)->sqrt(arr[0] * arr[0] + arr[1]*arr[1]) %1 == 0 ).forEach((arr)->System.out.println(arr[0] +"," + arr[1]));
 	} 
 	
