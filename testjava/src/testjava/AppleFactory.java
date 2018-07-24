@@ -4,6 +4,7 @@ package testjava;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class AppleFactory 
 {
@@ -39,6 +40,11 @@ public class AppleFactory
 		list.add(randomApple());
 		}
 		return list;
+	}
+	
+	public static Stream<Apple> buildAppleStream(int n)
+	{
+		return Stream.generate(()->AppleFactory.randomApple()).limit(n);
 	}
 
 

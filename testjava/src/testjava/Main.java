@@ -93,13 +93,48 @@ public class Main {
 		Stream.generate(()->AppleFactory.randomApple()).limit(20).forEach(System.out::println);
 	}
 	
+	public static HashMap<String,Integer> accumulate(Apple apple)
+	{
+		HashMap<String,Integer>map = new HashMap<String,Integer>();
+		map.put(apple.getColor(),apple.getWeight());
+		log("accumulate" + apple);
+
+		return map;
+	}
+	
+	static public HashMap<String,Integer> accumulateMap(HashMap<String,Integer>left, HashMap<String,Integer> right)
+	{
+		for(Map.Entry<String, Integer> entry : left.entrySet())
+		{
+			Integer rightValue = right.get(entry.getKey());
+			if(rightValue != null)
+				{
+					entry.setValue(entry.getValue() + rightValue);
+					right.remove(entry.getKey());
+				}
+		}
+		
+		left.putAll(right);
+		return left;
+	}
+	
 	public static void main(String[] args)
 	{
 		//testFile();
 		
 		//testGenerateNum();
 		testGenerateApple();
+		int sum = AppleFactory.buildAppleStream(20).collect(Collectors.reducing(0,Apple::getWeight,(left,right)->left>right?left:right));
+		log("max =" + sum);
+		HashMap map = AppleFactory.buildAppleStream(20).collect(Collectors.reducing(new HashMap<String,Integer>(),Main::accumulate,Main::accumulateMap));
+		log("reducing result:" + map);
+		String joinStr = AppleFactory.buildAppleStream(20).map(Apple::getColor).collect(Collectors.joining(","));
+		log(joinStr);
 		
+		int result = AppleFactory.buildAppleStream(20).collect(Collectors.reducing(0,t->t.getWeight(),Integer::sum));
+		log(result);
+		result = AppleFactory.buildAppleStream(20).reduce(0,(val,t)->val + 1,(left,right)->left + right);
+		log(result);
 		//stream.filter((int [] arr)->sqrt(arr[0] * arr[0] + arr[1]*arr[1]) %1 == 0 ).forEach((arr)->System.out.println(arr[0] +"," + arr[1]));
 	} 
 	
