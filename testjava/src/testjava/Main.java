@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
+import java.util.stream.Collectors.*;
 
 interface  Format<T>
 {
@@ -135,7 +136,9 @@ public class Main {
 		log(result);
 		result = AppleFactory.buildAppleStream(20).reduce(0,(val,t)->val + 1,(left,right)->left + right);
 		log(result);
+		Object ret = AppleFactory.buildAppleStream(20).collect(Collectors.groupingBy(Apple::getColor,Collectors.groupingBy((Apple t)->{if(t.getWeight()>30) return "heavy"; else return "light";})));
 		//stream.filter((int [] arr)->sqrt(arr[0] * arr[0] + arr[1]*arr[1]) %1 == 0 ).forEach((arr)->System.out.println(arr[0] +"," + arr[1]));
+		log(ret);
 	} 
 	
 	

@@ -2,7 +2,7 @@ package testjava;
 
 public class Apple
 {
-	Apple(String color,int weight)
+	public Apple(String color,int weight)
 	{
 		this.color = color;
 		this.weight = weight;
