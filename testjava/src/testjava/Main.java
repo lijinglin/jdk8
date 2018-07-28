@@ -119,6 +119,11 @@ public class Main {
 		return left;
 	}
 	
+	static boolean isPrime(int candidate)
+	{
+		return IntStream.range(2, candidate).noneMatch(n-> candidate % n == 0);
+	}
+	
 	public static void main(String[] args)
 	{
 		//testFile();
@@ -139,6 +144,18 @@ public class Main {
 		Object ret = AppleFactory.buildAppleStream(20).collect(Collectors.groupingBy(Apple::getColor,Collectors.groupingBy((Apple t)->{if(t.getWeight()>30) return "heavy"; else return "light";})));
 		//stream.filter((int [] arr)->sqrt(arr[0] * arr[0] + arr[1]*arr[1]) %1 == 0 ).forEach((arr)->System.out.println(arr[0] +"," + arr[1]));
 		log(ret);
+		
+		ret = AppleFactory.buildAppleStream(20).collect(Collectors.partitioningBy((Apple t)->t.getWeight()>30, Collectors.groupingBy(Apple::getColor)));
+		log("patition result:\n" + ret);
+		log("Prime value:");
+		IntStream.range(1, 100).filter(Main::isPrime).forEach(System.out::println);
+		ret = IntStream.range(1, 100).boxed().collect(Collectors.partitioningBy(Main::isPrime));
+		log("prime patitioning \n " + ret);
+	}
+
+	private static Object reducingBy(Object object) {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 	
 	
