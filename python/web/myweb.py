@@ -4,8 +4,9 @@ render = web.template.render('templates/')
 class index:
 	def GET(self):
 		i = web.input(name=None)
+		## render.(name)  means name.html as template
 		return render.hello(i.name)
-		#return render.index(name)
+
 		
 		
 if  __name__ == "__main__":
