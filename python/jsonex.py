@@ -32,18 +32,11 @@ def _byteify(data, ignore_dicts = False):
 def read_json(fname):
 	with open(fname,'r') as file:
 		data = json.load(file)
-		print "read json  data:" + str(data)
+		#print "read json  data:" + str(data)
 		return _byteify(data,False)
-		
 
 		
+
+		
 		
 
-mydict={'name':'ljl','age':42, 'gender':'male','address':{'city':'shenzhen','zipcode':'580055'}}
-
-filename='d:/a.json'
-write_json(mydict,filename)
-dict1 = read_json(filename)
-print "dict is " + str(dict1)
-
-print dict1["name"] + " " + str(dict1["age"])
