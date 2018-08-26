@@ -9,7 +9,7 @@ def run_game():
 	pygame.init()
 	ai_setting = Settings()
 	screen = pygame.display.set_mode(ai_setting.screen)
-	aShip = Ship(screen);
+	aShip = Ship(ai_setting,screen);
 	bullets = Group()
 	gf = GameFunctions(ai_setting,screen,aShip,bullets)
 	pygame.display.set_caption('Alien Invasion')
