@@ -1,0 +1,9 @@
+lines = sc.textFile('c:/app/spark/readme.md')
+words = lines.flatmap(lambda line : line.split(' '))
+wordcount = words.map(lambda w : (w,1))
+swc = wordcount.sortByKey(ascending=True,keyfunc=(lambda w: str(w)))
+
+def print_rdd(rdd,num=10):
+    for e in rdd.top(num):
+      print e
+print_rdd(swc,100)

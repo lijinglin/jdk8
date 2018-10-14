@@ -1,0 +1,13 @@
+import StringIO
+import csv
+def loadRecords(line):
+    input = StringIO.StringIO(line)
+    reader = csv.DictReader(input, fieldnames=['word','count'])
+    return reader
+
+rdd = sc.textFile('c:/ww/part-00000').flatMap(loadRecords)
+
+def print_rdd(rdd,num=10):
+   for c in rdd.take(num):
+       print c
+       

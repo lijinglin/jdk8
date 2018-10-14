@@ -1,0 +1,3 @@
+import read_iris
+df = read_iris.get_data()
+df.head()
